@@ -78,4 +78,15 @@ public class GymLog {
         this.reps = reps;
         date = LocalDateTime.now();
     }
+
+    @Override
+    public String toString() {
+        return "GymLog{" +
+                "id=" + id +
+                ", exercise='" + exercise + '\'' +
+                ", weight=" + weight +
+                ", reps=" + reps +
+                ", date=" + date +
+                '}';
+    }
 }

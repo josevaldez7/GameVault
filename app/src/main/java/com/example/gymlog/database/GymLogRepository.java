@@ -7,6 +7,7 @@ import com.example.gymlog.database.entities.GymLog;
 import com.example.gymlog.MainActivity;
 
 import java.util.ArrayList;
+import java.util.MissingFormatArgumentException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -15,10 +16,32 @@ public class GymLogRepository {
     private GymLogDAO gymLogDAO;
     private ArrayList<GymLog> allLogs;
 
-    public GymLogRepository(Application application){
+    private static GymLogRepository repository;
+
+    private GymLogRepository(Application application){
         GymLogDataBase db = GymLogDataBase.getDatabase(application);
         this.gymLogDAO = db.gymLogDAO();
         this.allLogs = (ArrayList<GymLog>) this.gymLogDAO.getAllRecords();
+    }
+
+    public static GymLogRepository getRepository(Application application){
+        if(repository != null){
+            return repository;
+        }
+        Future<GymLogRepository> future = GymLogDataBase.databaseWriteExecutor.submit(
+                new Callable<GymLogRepository>() {
+                    @Override
+                    public GymLogRepository call() throws Exception {
+                        return new GymLogRepository(application);
+                    }
+                }
+        );
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e){
+            Log.d(MainActivity.TAG, "Problem getting GymLogRepository, thread error.");
+        }
+        return null;
     }
 
     public ArrayList<GymLog> getAllLogs() {
