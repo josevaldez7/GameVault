@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFormActivity">
+
+    <EditText
+        android:id="@+id/userNameLoginEditText"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_margin="16dp"
+        android:hint="@string/username"
+        android:gravity="center"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordLoginEditText"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_margin="16dp"
+        android:hint="@string/password"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/userNameLoginEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:text="@string/login"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/passwordLoginEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GymLog</string>
+    <string name="app_name">GameVault</string>
     <string name="exercise">Exercise</string>
     <string name="enter_an_exercise">Enter an Exercise</string>
     <string name="weight">Weight</string>
@@ -8,10 +8,12 @@
     <string name="reps">Reps</string>
     <string name="log">Log!</string>
     <string name="nothing_to_show_time_to_hit_the_gym">Nothing to show, time to hit the gym!</string>
-    <string name="login_welcome">Welcome to the GymLog.\nPlease Sign in.</string>
+    <string name="login_welcome">Welcome to the GameVault.\nPlease Sign in.</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login!</string>
     <string name="preference_file_key">daclinkPreferenceFileNameGymLog</string>
     <string name="preference_userId_key">daclinkPreferenceUserIdKeyGymLog</string>
+    <string name="create_account">Create Account</string>
+    <string name="admin_button">Admin Button</string>
 </resources>

@@ -68,48 +68,31 @@ public class MainActivity extends AppCompatActivity {
         gymLogViewModel = new ViewModelProvider(this).get(GymLogViewModel.class);
 
 
-        RecyclerView recyclerView = binding.logDisplayRecyclerView;
-        final GymLogAdapter adapter = new GymLogAdapter(new GymLogAdapter.GymLogDiff());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        RecyclerView recyclerView = binding.logDisplayRecyclerView;
+//        final GymLogAdapter adapter = new GymLogAdapter(new GymLogAdapter.GymLogDiff());
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         repository = GymLogRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-        gymLogViewModel.getAllLogsById(loggedInUserId).observe(this, gymLogs -> {
-            adapter.submitList(gymLogs);
-        });
+//        gymLogViewModel.getAllLogsById(loggedInUserId).observe(this, gymLogs -> {
+//            adapter.submitList(gymLogs);
+//        });
 
         //User is not logged in at this point, go to login screen
         if (loggedInUserId == -1) {
-            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         }
 
         updateSharedPreference();
 
-        // TODO: REMOVE two lines below
-        // binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
-        //updateDisplay();
 
-        binding.logButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getInformationFromDisplay();
-                insertGymLogRecord();
-                //TODO: remove line below
-                //updateDisplay();
-            }
+        binding.adminButton.setOnClickListener(v -> {
+            Toast.makeText(this, "This is only available to admins!", Toast.LENGTH_SHORT).show();
         });
 
-        /* TODO: remove this block.
-        binding.exerciseInputEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateDisplay();
-            }
-        });
-*/
     }
 
 
@@ -135,9 +118,19 @@ public class MainActivity extends AppCompatActivity {
             this.user = user;
             if (this.user != null) {
                 invalidateOptionsMenu();
+                updateAdminUI(user.isAdmin());
             }
         });
     }
+
+    private void updateAdminUI(boolean isAdmin) {
+        if (isAdmin) {
+            binding.adminButton.setVisibility(View.VISIBLE);
+        } else {
+            binding.adminButton.setVisibility(View.INVISIBLE);
+        }
+    }
+
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -200,9 +193,8 @@ public class MainActivity extends AppCompatActivity {
 
         loggedInUserId = LOGGED_OUT;
         updateSharedPreference();
-        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
-
-        startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
 
     private void updateSharedPreference(){
@@ -242,18 +234,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void getInformationFromDisplay(){
-        mExercise = binding.exerciseInputEditText.getText().toString();
-        try {
-            mWeight = Double.parseDouble(binding.weightInputEditText.getText().toString());
-        } catch (NumberFormatException e){
-            Log.d(TAG, "Error reading value from Weight edit text.");
-        }
-
-        try {
-            mReps = Integer.parseInt(binding.repInputEditText.getText().toString());
-        } catch (NumberFormatException e){
-            Log.d(TAG, "Error reading value from reps edit text.");
-        }
-    }
+//    private void getInformationFromDisplay(){
+//        mExercise = binding.exerciseInputEditText.getText().toString();
+//        try {
+//            mWeight = Double.parseDouble(binding.weightInputEditText.getText().toString());
+//        } catch (NumberFormatException e){
+//            Log.d(TAG, "Error reading value from Weight edit text.");
+//        }
+//
+//        try {
+//            mReps = Integer.parseInt(binding.repInputEditText.getText().toString());
+//        } catch (NumberFormatException e){
+//            Log.d(TAG, "Error reading value from reps edit text.");
+//        }
+//    }
 }
