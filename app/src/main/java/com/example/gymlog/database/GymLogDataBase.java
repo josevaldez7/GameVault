@@ -67,6 +67,21 @@ public abstract class GymLogDataBase extends RoomDatabase {
         }
     };
 
+    static final RoomDatabase.Callback addOrUpdateUsers = new RoomDatabase.Callback() {
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+            databaseWriteExecutor.execute(() -> {
+                UserDAO dao = INSTANCE.userDAO();
+
+                User admin = new User("admin2", "admin2");
+                admin.setAdmin(true);
+                dao.insert(admin);
+            });
+        }
+    };
+
+
 
     public abstract GymLogDAO gymLogDAO();
 
