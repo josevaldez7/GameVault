@@ -1,4 +1,4 @@
-package com.example.gymlog;
+package com.example.gamevault;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,21 +8,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
-import com.example.gymlog.database.GymLogRepository;
-import com.example.gymlog.database.entities.User;
-import com.example.gymlog.databinding.ActivityLoginFormBinding;
+import com.example.gamevault.database.GameVaultRepository;
+import com.example.gamevault.database.entities.User;
+import com.example.gamevault.databinding.ActivityLoginFormBinding;
 
 public class LoginFormActivity extends AppCompatActivity {
 
     private ActivityLoginFormBinding binding;
-    private GymLogRepository repository;
+    private GameVaultRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginFormBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        repository = GymLogRepository.getRepository(getApplication());
+        repository = GameVaultRepository.getRepository(getApplication());
 
         binding.loginButton.setOnClickListener(view -> verifyUser());
     }

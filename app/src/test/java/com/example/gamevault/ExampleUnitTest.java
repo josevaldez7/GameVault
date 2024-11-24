@@ -1,4 +1,4 @@
-package com.example.gymlog;
+package com.example.gamevault;
 
 import org.junit.Test;
 

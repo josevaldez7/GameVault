@@ -1,4 +1,4 @@
-package com.example.gymlog.database;
+package com.example.gamevault.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.gymlog.database.entities.User;
+import com.example.gamevault.database.entities.User;
 
 import java.util.List;
 
@@ -19,17 +19,17 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM " + GymLogDataBase.USER_TABLE + " ORDER BY username")
+    @Query("SELECT * FROM " + GameVaultDataBase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getALlUsers();
 
 
-    @Query("DELETE from " + GymLogDataBase.USER_TABLE)
+    @Query("DELETE from " + GameVaultDataBase.USER_TABLE)
     void deleteAll();
 
-    @Query("SELECT * FROM " + GymLogDataBase.USER_TABLE + " WHERE username == :username")
+    @Query("SELECT * FROM " + GameVaultDataBase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
 
-    @Query("SELECT * FROM " + GymLogDataBase.USER_TABLE + " WHERE id == :userId")
+    @Query("SELECT * FROM " + GameVaultDataBase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
 
 }

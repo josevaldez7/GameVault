@@ -1,13 +1,13 @@
-package com.example.gymlog.database.entities;
+package com.example.gamevault.database.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.gymlog.database.GymLogDataBase;
+import com.example.gamevault.database.GameVaultDataBase;
 
 import java.util.Objects;
 
-@Entity(tableName = GymLogDataBase.USER_TABLE)
+@Entity(tableName = GameVaultDataBase.USER_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;

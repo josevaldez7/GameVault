@@ -1,56 +1,45 @@
-package com.example.gymlog;
+package com.example.gamevault;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymlog.database.GymLogRepository;
-import com.example.gymlog.database.entities.GymLog;
-import com.example.gymlog.database.entities.User;
-import com.example.gymlog.databinding.ActivityMainBinding;
-import com.example.gymlog.viewHolders.GymLogAdapter;
-import com.example.gymlog.viewHolders.GymLogViewModel;
+import com.example.gamevault.database.GameVaultRepository;
+import com.example.gamevault.database.entities.GameVault;
+import com.example.gamevault.database.entities.User;
+import com.example.gamevault.viewHolders.GameVaultViewModel;
+import com.example.gamevault.R;
+import com.example.gamevault.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String MAIN_ACTIVITY_USER_ID = "gymlog.MAIN_ACTIVITY_USER_ID";
-    static final String SHARED_PREFERENCE_USERID_KEY = "gymlog.SHARED_PREFERENCE_USERID_KEY";
-    static final String SAVED_INSTANCE_STATE_USERID_KEY = "gymlog.SAVED_INSTANCE_STATE_USERID_KEY";
+    private static final String MAIN_ACTIVITY_USER_ID = "gamevault.MAIN_ACTIVITY_USER_ID";
+    static final String SHARED_PREFERENCE_USERID_KEY = "gamevault.SHARED_PREFERENCE_USERID_KEY";
+    static final String SAVED_INSTANCE_STATE_USERID_KEY = "gamevault.SAVED_INSTANCE_STATE_USERID_KEY";
 
 
 
     private static final int LOGGED_OUT = -1;
     private ActivityMainBinding binding;
-    private GymLogRepository repository;
-    private GymLogViewModel gymLogViewModel;
+    private GameVaultRepository repository;
+    private GameVaultViewModel gameVaultViewModel;
 
-    public static final String TAG = "DAC_GYMLOG";
+    public static final String TAG = "DAC_gamevault";
 
     String mExercise = "";
     double mWeight = 0.0;
@@ -65,19 +54,19 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        gymLogViewModel = new ViewModelProvider(this).get(GymLogViewModel.class);
+        gameVaultViewModel = new ViewModelProvider(this).get(GameVaultViewModel.class);
 
 
 //        RecyclerView recyclerView = binding.logDisplayRecyclerView;
-//        final GymLogAdapter adapter = new GymLogAdapter(new GymLogAdapter.GymLogDiff());
+//        final gamevaultAdapter adapter = new gamevaultAdapter(new gamevaultAdapter.gamevaultDiff());
 //        recyclerView.setAdapter(adapter);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        repository = GymLogRepository.getRepository(getApplication());
+        repository = GameVaultRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-//        gymLogViewModel.getAllLogsById(loggedInUserId).observe(this, gymLogs -> {
-//            adapter.submitList(gymLogs);
+//        gamevaultViewModel.getAllLogsById(loggedInUserId).observe(this, gamevaults -> {
+//            adapter.submitList(gamevaults);
 //        });
 
         //User is not logged in at this point, go to login screen
@@ -211,23 +200,23 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
-    private void insertGymLogRecord(){
+    private void insertgamevaultRecord(){
         if(mExercise.isEmpty()){
             return;
         }
-        GymLog log = new GymLog(mExercise, mWeight, mReps, loggedInUserId);
-        repository.insertGymLog(log);
+        GameVault log = new GameVault(mExercise, mWeight, mReps, loggedInUserId);
+        repository.insertgamevault(log);
     }
 
     @Deprecated
     private void updateDisplay() {
-        ArrayList<GymLog> allLogs = repository.getAllLogsByUserId(loggedInUserId);
+        ArrayList<GameVault> allLogs = repository.getAllLogsByUserId(loggedInUserId);
         if (allLogs.isEmpty()) {
    //         binding.logDisplayTextView.setText(R.string.nothing_to_show_time_to_hit_the_gym);
             return;
         }
         StringBuilder sb = new StringBuilder();
-        for (GymLog log : allLogs) {
+        for (GameVault log : allLogs) {
             sb.append(log);
         }
     //    binding.logDisplayTextView.setText(sb.toString());

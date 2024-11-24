@@ -1,17 +1,17 @@
-package com.example.gymlog.database.entities;
+package com.example.gamevault.database.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.gymlog.database.GymLogDataBase;
+import com.example.gamevault.database.GameVaultDataBase;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity(tableName = GymLogDataBase.GYM_LOG_TABLE)
+@Entity(tableName = GameVaultDataBase.GYM_LOG_TABLE)
 
-public class GymLog {
+public class GameVault {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -62,7 +62,7 @@ public class GymLog {
         this.date = date;
     }
 
-    public GymLog(String exercise, double weight, int reps, int userId) {
+    public GameVault(String exercise, double weight, int reps, int userId) {
         this.exercise = exercise;
         this.weight = weight;
         this.reps = reps;
@@ -93,8 +93,8 @@ public class GymLog {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GymLog gymLog = (GymLog) o;
-        return id == gymLog.id && Double.compare(weight, gymLog.weight) == 0 && reps == gymLog.reps && userId == gymLog.userId && Objects.equals(exercise, gymLog.exercise) && Objects.equals(date, gymLog.date);
+        GameVault gamevault = (GameVault) o;
+        return id == gamevault.id && Double.compare(weight, gamevault.weight) == 0 && reps == gamevault.reps && userId == gamevault.userId && Objects.equals(exercise, gamevault.exercise) && Objects.equals(date, gamevault.date);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.gymlog.database.typeConverters;
+package com.example.gamevault.database.typeConverters;
 
 
 import androidx.room.TypeConverter;

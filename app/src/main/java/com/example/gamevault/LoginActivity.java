@@ -1,12 +1,11 @@
-package com.example.gymlog;
+package com.example.gamevault;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gymlog.databinding.ActivityLoginBinding;
+import com.example.gamevault.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
