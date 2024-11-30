@@ -17,13 +17,11 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Login button redirects to LoginFormActivity
         binding.loginButton.setOnClickListener(view -> {
             Intent intent = LoginFormActivity.loginFormIntentFactory(LoginActivity.this);
             startActivity(intent);
         });
 
-        // Create Account button can redirect to a sign-up activity
         binding.createAccountButton.setOnClickListener(view -> {
             // Add logic for creating a new account
         });
