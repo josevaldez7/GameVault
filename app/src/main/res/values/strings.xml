@@ -17,4 +17,6 @@
     <string name="welcome_to_gamevault">Welcome to GameVault</string>
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
+    <string name="confirm_password"> Confirm Password </string>
+    <string name="back_to_login"> Back to Login </string>
 </resources>

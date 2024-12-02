@@ -23,7 +23,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.createAccountButton.setOnClickListener(view -> {
-            // Add logic for creating a new account
+            Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
+            startActivity(intent);
         });
+
     }
 }

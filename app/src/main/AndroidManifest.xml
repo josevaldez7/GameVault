@@ -30,6 +30,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
+
     </application>
 
 
