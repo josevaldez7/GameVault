@@ -16,4 +16,13 @@
     <string name="preference_userId_key">daclinkPreferenceUserIdKeygamevault</string>
     <string name="create_account">Create Account</string>
     <string name="admin_button">Admin Button</string>
+    <string name="search_button" />
+    <string name="search">search</string>
+    <string name="browse">browse</string>
+    <string name="browse_games">browse games</string>
+    <string name="game_vault">Game Vault</string>
+    <string name="game">game</string>
+    <string name="vault">vault</string>
+    <string name="Game">Game</string>
+    <string name="Vault">Vault</string>
 </resources>
