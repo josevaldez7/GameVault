@@ -17,7 +17,7 @@ public interface UserDAO {
     void insert(User... user);
 
     @Delete
-    void delete(User user);
+    void deleteUser(User user);
 
     @Query("SELECT * FROM " + GameVaultDataBase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getALlUsers();

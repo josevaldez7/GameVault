@@ -52,7 +52,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                 User newUser = new User(username, password);
                 repository.insertUser(newUser);
                 Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+                navigateToLogin();
             }
+            existingUser.removeObservers(this);
         });
     }
 

@@ -80,6 +80,14 @@ public class GameVaultRepository {
         });
     }
 
+    public LiveData<List<User>> getAllUsers() {
+        return userDAO.getALlUsers();
+    }
+
+    public void deleteUser(User user) {
+        GameVaultDataBase.databaseWriteExecutor.execute(() -> userDAO.deleteUser(user));
+    }
+
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
     }

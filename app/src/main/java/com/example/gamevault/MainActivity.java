@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.example.gamevault.R;
 import com.example.gamevault.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
         gameVaultViewModel = new ViewModelProvider(this).get(GameVaultViewModel.class);
 
+        binding.manageUsersButton.setOnClickListener(v -> showUserManagementDialog());
+
+
 
 //        RecyclerView recyclerView = binding.logDisplayRecyclerView;
 //        final gamevaultAdapter adapter = new gamevaultAdapter(new gamevaultAdapter.gamevaultDiff());
@@ -84,6 +89,49 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void showUserManagementDialog() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        final AlertDialog alertDialog = alertBuilder.create();
+
+        LiveData<List<User>> usersLiveData = repository.getAllUsers();
+        usersLiveData.observe(this, users -> {
+            if (users == null || users.isEmpty()) {
+                Toast.makeText(this, "No users found!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String[] userNames = new String[users.size()];
+            for (int i = 0; i < users.size(); i++) {
+                userNames[i] = users.get(i).getUsername();
+            }
+
+            alertBuilder.setTitle("Manage Users");
+            alertBuilder.setItems(userNames, (dialogInterface, which) -> {
+                User selectedUser = users.get(which);
+                confirmAndRemoveUser(selectedUser);
+            });
+
+            alertBuilder.setNegativeButton("Cancel", (dialogInterface, which) -> alertDialog.dismiss());
+            alertBuilder.create().show();
+        });
+    }
+
+    private void confirmAndRemoveUser(User user) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        final AlertDialog alertDialog = alertBuilder.create();
+
+        alertBuilder.setTitle("Remove User");
+        alertBuilder.setMessage("Are you sure you want to remove " + user.getUsername() + "?");
+
+        alertBuilder.setPositiveButton("Yes", (dialogInterface, which) -> {
+            repository.deleteUser(user);
+            Toast.makeText(this, "User removed successfully!", Toast.LENGTH_SHORT).show();
+        });
+
+        alertBuilder.setNegativeButton("No", (dialogInterface, which) -> alertDialog.dismiss());
+        alertBuilder.create().show();
+    }
+
 
     private void loginUser(Bundle savedInstanceState) {
         // Check shared preference for logged in user
@@ -108,6 +156,9 @@ public class MainActivity extends AppCompatActivity {
             if (this.user != null) {
                 invalidateOptionsMenu();
                 updateAdminUI(user.isAdmin());
+
+                TextView welcomeTextView = findViewById(R.id.welcomeTextView);
+                welcomeTextView.setText("Welcome, " + user.getUsername());
             }
         });
     }
@@ -115,8 +166,11 @@ public class MainActivity extends AppCompatActivity {
     private void updateAdminUI(boolean isAdmin) {
         if (isAdmin) {
             binding.adminButton.setVisibility(View.VISIBLE);
+            binding.manageUsersButton.setVisibility(View.VISIBLE);
+            binding.manageUsersButton.setOnClickListener(v -> showUserManagementDialog());
         } else {
             binding.adminButton.setVisibility(View.INVISIBLE);
+            binding.manageUsersButton.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -142,11 +196,11 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             return false;
         }
-        item.setTitle(user.getUsername());
+        //item.setTitle(user.getUsername());
+        item.setTitle("Logout");
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
-
                 showLogoutDialog();
                 return false;
             }
