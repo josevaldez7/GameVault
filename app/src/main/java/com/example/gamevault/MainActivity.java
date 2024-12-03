@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
             if (this.user != null) {
                 invalidateOptionsMenu();
                 updateAdminUI(user.isAdmin());
-
                 TextView welcomeTextView = findViewById(R.id.welcomeTextView);
                 welcomeTextView.setText("Welcome, " + user.getUsername());
             }
