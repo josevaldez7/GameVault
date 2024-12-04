@@ -25,6 +25,12 @@ public class LoginFormActivity extends AppCompatActivity {
         repository = GameVaultRepository.getRepository(getApplication());
 
         binding.loginButton.setOnClickListener(view -> verifyUser());
+
+        binding.BacktoHome.setOnClickListener(view -> {
+            Intent intent = LoginActivity.loginIntentFactory(LoginFormActivity.this);
+            startActivity(intent);
+        });
+
     }
 
     private void verifyUser() {

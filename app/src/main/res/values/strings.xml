@@ -18,7 +18,8 @@
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
     <string name="confirm_password"> Confirm Password </string>
-    <string name="back_to_login"> Back to Login </string>
+    <string name="back_to_login"> Back to Home </string>
     <string name="manage_users">Manage Users</string>
     <string name="welcome">Welcome,</string>
+    <string name="back_to_home">Back to Home</string>
 </resources>

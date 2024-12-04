@@ -1,5 +1,6 @@
 package com.example.gamevault;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,6 +27,9 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
             startActivity(intent);
         });
+    }
 
+    public static Intent loginIntentFactory(Context context){
+        return new Intent(context, LoginActivity.class);
     }
 }

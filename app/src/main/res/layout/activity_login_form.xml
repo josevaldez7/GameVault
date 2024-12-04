@@ -43,4 +43,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/BacktoHome"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:text="@string/back_to_home"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
