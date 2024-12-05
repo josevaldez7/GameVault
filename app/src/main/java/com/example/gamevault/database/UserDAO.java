@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.gamevault.database.entities.User;
 
@@ -31,5 +32,8 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + GameVaultDataBase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+    @Update
+    void update(User user);
 
 }

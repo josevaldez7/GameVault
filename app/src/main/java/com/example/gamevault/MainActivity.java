@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         gameVaultViewModel = new ViewModelProvider(this).get(GameVaultViewModel.class);
 
         binding.manageUsersButton.setOnClickListener(v -> showUserManagementDialog());
-
+        binding.promoteUsersToAdminButton.setOnClickListener(v -> showPromoteToAdminDialog());
 
 
 //        RecyclerView recyclerView = binding.logDisplayRecyclerView;
@@ -83,13 +83,56 @@ public class MainActivity extends AppCompatActivity {
         updateSharedPreference();
 
 
-        binding.adminButton.setOnClickListener(v -> {
-            Toast.makeText(this, "This is only available to admins!", Toast.LENGTH_SHORT).show();
-        });
-
     }
 
     private void showUserManagementDialog() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        final AlertDialog alertDialog = alertBuilder.create();
+        LiveData<List<User>> usersLiveData = repository.getAllUsers();
+        usersLiveData.observe(this, users -> {
+            if (users == null || users.isEmpty()) {
+                Toast.makeText(this, "No users found!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            List<User> nonAdminUsers = new ArrayList<>();
+            for (User user : users) {
+                if (!user.isAdmin()) {
+                    nonAdminUsers.add(user);
+                }
+            }
+            if (nonAdminUsers.isEmpty()) {
+                Toast.makeText(this, "No non-admin users found!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String[] userNames = new String[nonAdminUsers.size()];
+            for (int i = 0; i < nonAdminUsers.size(); i++) {
+                userNames[i] = nonAdminUsers.get(i).getUsername();
+            }
+            alertBuilder.setTitle("Manage Users");
+            alertBuilder.setItems(userNames, (dialogInterface, which) -> {
+                User selectedUser = nonAdminUsers.get(which);
+                confirmAndRemoveUser(selectedUser);
+            });
+            alertBuilder.setNegativeButton("Cancel", (dialogInterface, which) -> alertDialog.dismiss());
+            alertBuilder.create().show();
+        });
+    }
+
+    private void confirmAndRemoveUser(User user) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        final AlertDialog alertDialog = alertBuilder.create();
+        alertBuilder.setTitle("Remove User");
+        alertBuilder.setMessage("Are you sure you want to remove " + user.getUsername() + "?");
+        alertBuilder.setPositiveButton("Yes", (dialogInterface, which) -> {
+            repository.deleteUser(user);
+            Toast.makeText(this, "User removed successfully!", Toast.LENGTH_SHORT).show();
+        });
+        alertBuilder.setNegativeButton("No", (dialogInterface, which) -> alertDialog.dismiss());
+        alertBuilder.create().show();
+    }
+
+    private void showPromoteToAdminDialog() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
 
@@ -100,15 +143,27 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            String[] userNames = new String[users.size()];
-            for (int i = 0; i < users.size(); i++) {
-                userNames[i] = users.get(i).getUsername();
+            List<User> nonAdminUsers = new ArrayList<>();
+            for (User user : users) {
+                if (!user.isAdmin()) {
+                    nonAdminUsers.add(user);
+                }
             }
 
-            alertBuilder.setTitle("Manage Users");
+            if (nonAdminUsers.isEmpty()) {
+                Toast.makeText(this, "No non-admin users found!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String[] userNames = new String[nonAdminUsers.size()];
+            for (int i = 0; i < nonAdminUsers.size(); i++) {
+                userNames[i] = nonAdminUsers.get(i).getUsername();
+            }
+
+            alertBuilder.setTitle("Promote Users to Admin");
             alertBuilder.setItems(userNames, (dialogInterface, which) -> {
-                User selectedUser = users.get(which);
-                confirmAndRemoveUser(selectedUser);
+                User selectedUser = nonAdminUsers.get(which);
+                promoteToAdmin(selectedUser);
             });
 
             alertBuilder.setNegativeButton("Cancel", (dialogInterface, which) -> alertDialog.dismiss());
@@ -116,22 +171,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void confirmAndRemoveUser(User user) {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-        final AlertDialog alertDialog = alertBuilder.create();
-
-        alertBuilder.setTitle("Remove User");
-        alertBuilder.setMessage("Are you sure you want to remove " + user.getUsername() + "?");
-
-        alertBuilder.setPositiveButton("Yes", (dialogInterface, which) -> {
-            repository.deleteUser(user);
-            Toast.makeText(this, "User removed successfully!", Toast.LENGTH_SHORT).show();
-        });
-
-        alertBuilder.setNegativeButton("No", (dialogInterface, which) -> alertDialog.dismiss());
-        alertBuilder.create().show();
+    private void promoteToAdmin(User user) {
+        if (user.isAdmin()) {
+            Toast.makeText(this, "User is already an admin!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        user.setAdmin(true);
+        repository.updateUser(user);
+        Toast.makeText(this, "User promoted to admin successfully!", Toast.LENGTH_SHORT).show();
     }
-
 
     private void loginUser(Bundle savedInstanceState) {
         // Check shared preference for logged in user
@@ -164,11 +212,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateAdminUI(boolean isAdmin) {
         if (isAdmin) {
-            binding.adminButton.setVisibility(View.VISIBLE);
             binding.manageUsersButton.setVisibility(View.VISIBLE);
+            binding.promoteUsersToAdminButton.setVisibility(View.VISIBLE);
             binding.manageUsersButton.setOnClickListener(v -> showUserManagementDialog());
         } else {
-            binding.adminButton.setVisibility(View.INVISIBLE);
+            binding.promoteUsersToAdminButton.setVisibility(View.INVISIBLE);
             binding.manageUsersButton.setVisibility(View.INVISIBLE);
         }
     }
