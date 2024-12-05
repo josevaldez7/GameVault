@@ -12,6 +12,7 @@ import com.example.gamevault.database.entities.User;
 import com.example.gamevault.databinding.ActivityChangeInfoBinding;
 
 
+
 public class ChangeInfoActivity extends AppCompatActivity {
 
     private ActivityChangeInfoBinding binding;
