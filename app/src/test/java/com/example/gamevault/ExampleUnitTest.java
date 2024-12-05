@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.example.gamevault.database.entities.User;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -13,6 +15,17 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
+
+    User user;
+
+    @Test
+    public void userTest(){
+        user = new User("testUser", "testPassword");
+        assertNotNull(user);
+        assertEquals(user.getUsername(), "testUser");
+        assertEquals(user.getPassword(), "testPassword");
+        assertFalse(user.isAdmin());
     }
 
 }
