@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -61,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         binding.manageUsersButton.setOnClickListener(v -> showUserManagementDialog());
         binding.promoteUsersToAdminButton.setOnClickListener(v -> showPromoteToAdminDialog());
 
+        binding.changeUserInfoButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ChangeInfoActivity.class);
+            startActivity(intent);
+        });
 
 //        RecyclerView recyclerView = binding.logDisplayRecyclerView;
 //        final gamevaultAdapter adapter = new gamevaultAdapter(new gamevaultAdapter.gamevaultDiff());

@@ -23,4 +23,9 @@
     <string name="welcome">Welcome,</string>
     <string name="back_to_home">Back to Home</string>
     <string name="promote_users">Promote Users</string>
+    <string name="settings">Settings</string>
+    <string name="enter_new_username">Enter New Username</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="confirm_changes">Confirm Changes</string>
+    <string name="cancel">Cancel</string>
 </resources>
