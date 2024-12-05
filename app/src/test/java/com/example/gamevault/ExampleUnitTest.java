@@ -44,4 +44,13 @@ public class ExampleUnitTest {
         assertEquals("newPassWord", user.getPassword());
     }
 
+    @Test
+    public void changeAdmin(){
+        user = new User("testUser", "testPassword");
+        assertNotEquals(true, user.isAdmin());
+        user.setAdmin(true);
+        assertNotEquals(false, user.isAdmin());
+        assertTrue(user.isAdmin());
+    }
+
 }
