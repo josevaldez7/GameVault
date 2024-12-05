@@ -53,4 +53,18 @@ public class ExampleUnitTest {
         assertTrue(user.isAdmin());
     }
 
+    @Test
+    public void testNullInputs(){
+        user = new User(null, null);
+        assertNull(user.getUsername());
+        assertNull(user.getPassword());
+        assertFalse(user.isAdmin());
+
+        user.setUsername("validUser");
+        user.setPassword("validPassword");
+
+        assertEquals("validUser", user.getUsername());
+        assertEquals("validPassword", user.getPassword());
+    }
+
 }
