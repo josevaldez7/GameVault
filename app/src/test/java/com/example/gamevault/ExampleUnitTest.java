@@ -36,4 +36,12 @@ public class ExampleUnitTest {
         assertEquals("newUserName", user.getUsername());
     }
 
+    @Test
+    public void changePassWord(){
+        user = new User("testUser", "testPassword");
+        user.setPassword("newPassWord");
+        assertNotEquals("testPassword", user.getUsername());
+        assertEquals("newPassWord", user.getPassword());
+    }
+
 }
