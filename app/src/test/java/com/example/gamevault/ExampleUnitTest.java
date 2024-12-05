@@ -28,4 +28,12 @@ public class ExampleUnitTest {
         assertFalse(user.isAdmin());
     }
 
+    @Test
+    public void changeUserName(){
+        user = new User("testUser", "testPassword");
+        user.setUsername("newUserName");
+        assertNotEquals("testUser", user.getUsername());
+        assertEquals("newUserName", user.getUsername());
+    }
+
 }
