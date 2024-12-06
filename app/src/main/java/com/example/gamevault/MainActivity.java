@@ -90,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
         updateSharedPreference();
 
 
+        binding.searchButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Search button worked", Toast.LENGTH_SHORT).show();
+            Intent intent = SearchActivity.searchIntentFactory(MainActivity.this);
+            startActivity(intent);
+        });
+
+        binding.browseButton.setOnClickListener(v -> {
+            Toast.makeText(this, "browse button worked", Toast.LENGTH_SHORT).show();
+            Intent intent = BrowseActivity.browseIntentFactory(MainActivity.this);
+            startActivity(intent);
+        });
+
     }
 
     private void showUserManagementDialog() {

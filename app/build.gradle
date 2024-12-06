@@ -45,5 +45,16 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation libs.gson
+    implementation libs.glide
+    annotationProcessor libs.compiler
+    implementation (libs.retrofit) {
+        // exclude Retrofit’s OkHttp dependency module and define your own module import
+        exclude module: 'okhttp'
+    }
+    implementation libs.gson.v262
+    implementation libs.converter.gson
+    implementation libs.logging.interceptor
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 
 }

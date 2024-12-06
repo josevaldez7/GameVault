@@ -8,10 +8,12 @@
 
     <TextView
         android:id="@+id/welcomeTextView"
+        android:background="@color/black"
+        android:textColor="#d6001c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Welcome to GameVault"
+        android:text="Welcome to MovieVault"
         android:textSize="32sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,6 +21,8 @@
 
     <Button
         android:id="@+id/loginButton"
+        android:background="#444444"
+        android:textColor="#d6001c"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
@@ -29,6 +33,8 @@
 
     <Button
         android:id="@+id/createAccountButton"
+        android:background="#444444"
+        android:textColor="#d6001c"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Account"

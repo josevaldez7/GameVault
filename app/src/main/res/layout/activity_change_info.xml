@@ -10,6 +10,7 @@
         android:id="@+id/Settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#d6001c"
         android:text="@string/settings"
         android:textSize="50sp"
         android:gravity="center"
@@ -44,6 +45,8 @@
 
     <Button
         android:id="@+id/confirmChangesButton"
+        android:background="#444444"
+        android:textColor="#d6001c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/confirm_changes"
@@ -57,6 +60,8 @@
 
     <Button
         android:id="@+id/backToMainButton"
+        android:background="#444444"
+        android:textColor="#d6001c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
