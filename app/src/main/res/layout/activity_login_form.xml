@@ -35,8 +35,6 @@
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
-        android:background="#444444"
-        android:textColor="#c30f16"
         android:layout_height="105dp"
         android:layout_margin="16dp"
         android:text="@string/login"
