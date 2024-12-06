@@ -7,84 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/game"
-        android:background="@color/black"
-        android:textColor="#c30f16"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="@string/Game"
-        app:layout_constraintEnd_toStartOf="@+id/vault"
-        app:layout_constraintHorizontal_bias="0.007"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/vault"
-        android:background="@color/black"
-        android:textColor="#c30f16"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:text="@string/Vault"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/home"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/black"
-        android:textColor="#c30f16"
-        android:layout_marginTop="84dp"
-        android:gravity="center"
-        android:text="@string/home"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
-
     <Button
         android:id="@+id/adminButton"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:backgroundTint="#444444"
         android:text="@string/admin_button"
-        android:textColor="#c30f16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/searchButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:backgroundTint="#444444"
-        android:text="@string/search"
-        android:textColor="#c30f16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adminButton" />
-
-    <Button
-        android:id="@+id/browseButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:backgroundTint="#444444"
-        android:text="@string/browse_games"
-        android:textColor="#c30f16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

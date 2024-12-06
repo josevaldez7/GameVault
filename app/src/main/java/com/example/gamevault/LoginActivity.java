@@ -1,5 +1,6 @@
 package com.example.gamevault;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,15 +18,18 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Login button redirects to LoginFormActivity
         binding.loginButton.setOnClickListener(view -> {
             Intent intent = LoginFormActivity.loginFormIntentFactory(LoginActivity.this);
             startActivity(intent);
         });
 
-        // Create Account button can redirect to a sign-up activity
         binding.createAccountButton.setOnClickListener(view -> {
-            // Add logic for creating a new account
+            Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
+            startActivity(intent);
         });
+    }
+
+    public static Intent loginIntentFactory(Context context){
+        return new Intent(context, LoginActivity.class);
     }
 }
