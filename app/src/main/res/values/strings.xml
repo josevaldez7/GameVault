@@ -52,6 +52,9 @@
     <string name="welcome">welcome</string>
     <string name="manage_users">manage users</string>
     <string name="promote_users">promote users</string>
-=======
+    <string name="explore">Explore</string>
+    <string name="genre_name">Genre Name</string>
+
+    =======
 >>>>>>> 1cb785a9a660036d9673f854edd1d25d7e903168
 </resources>
