@@ -44,7 +44,7 @@ public class GameVaultRepository {
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e){
-            Log.d(MainActivity.TAG, "Problem getting gamevaultRepository, thread error.");
+            Log.d(MainActivity.TAG, "Problem getting GameVault Repository, thread error.");
         }
         return null;
     }

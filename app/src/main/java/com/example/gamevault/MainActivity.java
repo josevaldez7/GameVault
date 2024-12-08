@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.gamevault.database.GameVaultRepository;
 import com.example.gamevault.database.entities.GameVault;
 import com.example.gamevault.database.entities.User;
+import com.example.gamevault.viewHolders.ExploreActivity;
 import com.example.gamevault.viewHolders.GameVaultViewModel;
 import com.example.gamevault.R;
 import com.example.gamevault.databinding.ActivityMainBinding;
@@ -95,7 +96,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = SearchActivity.searchIntentFactory(MainActivity.this);
             startActivity(intent);
         });
-
+        binding.exploreButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Explore button worked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, ExploreActivity.class);
+            startActivity(intent);
+        });
         binding.browseButton.setOnClickListener(v -> {
             Toast.makeText(this, "browse button worked", Toast.LENGTH_SHORT).show();
             Intent intent = BrowseActivity.browseIntentFactory(MainActivity.this);
