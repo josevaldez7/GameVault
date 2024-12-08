@@ -14,77 +14,78 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <!-- TextView to display movie description -->
-
-            <!-- ImageView to display movie poster -->
-
+            <!-- Home Button -->
             <Button
                 android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
                 android:backgroundTint="#444444"
                 android:text="Go Home"
                 android:textColor="#c30f16" />
 
+            <!-- Search Input -->
             <EditText
                 android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:hint="@string/type_a_game_to_search_for"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp" />
+                android:padding="10dp"
+                android:background="@drawable/edittext_background" />
 
+            <!-- Search Button -->
             <Button
                 android:id="@+id/searchButton"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="#444444"
                 android:text="Search"
-                android:textColor="#c30f16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
+                android:textColor="#c30f16" />
 
+            <!-- Movie Title -->
             <TextView
                 android:id="@+id/movieTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Title: "
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="222dp"
-                tools:ignore="MissingConstraints" />
+                android:textStyle="bold" />
 
+            <!-- Movie Description -->
             <TextView
                 android:id="@+id/movieDescriptionTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="8dp"
                 android:text="Description: "
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/moviePosterImageView" />
+                android:padding="8dp"
+                android:background="@drawable/textview_background" />
 
+            <!-- Movie Poster -->
             <ImageView
                 android:id="@+id/moviePosterImageView"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="16dp"
                 android:contentDescription="Movie Poster"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toBottomOf="@+id/movieTitleTextView"
-                tools:layout_editor_absoluteX="0dp" />
+                android:visibility="gone" />
 
+            <!-- RecyclerView for Search Results -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchResultsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="visible" />
         </LinearLayout>
     </ScrollView>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

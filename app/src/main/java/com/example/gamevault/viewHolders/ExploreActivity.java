@@ -1,12 +1,13 @@
-package com.example.gamevault.viewHolders;
+package com.example.gamevault;
 
 import android.os.Bundle;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gamevault.adapter.GenreAdapter;
 import com.example.gamevault.R;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class ExploreActivity extends AppCompatActivity {
 
-    private ListView genreListView;
+    private RecyclerView genreRecyclerView;
     private HashMap<String, List<String>> genreRecommendations;
 
     @Override
@@ -23,7 +24,7 @@ public class ExploreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
-        genreListView = findViewById(R.id.genreListView);
+        genreRecyclerView = findViewById(R.id.genreRecyclerView);
 
         // Sample genres and game recommendations
         genreRecommendations = new HashMap<>();
@@ -32,33 +33,29 @@ public class ExploreActivity extends AppCompatActivity {
         genreRecommendations.put("RPG", List.of("Game 7", "Game 8", "Game 9"));
         genreRecommendations.put("Sports", List.of("Game 10", "Game 11", "Game 12"));
 
-        List<HashMap<String, String>> genreList = new ArrayList<>();
-        for (String genre : genreRecommendations.keySet()) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("genre", genre);
-            genreList.add(map);
-        }
+        // Prepare genre list
+        List<String> genres = new ArrayList<>(genreRecommendations.keySet());
 
-        // Use SimpleAdapter
-        SimpleAdapter adapter = new SimpleAdapter(
-                this,
-                genreList,
-                R.layout.genre_list_item,
-                new String[] {"genre"},
-                new int[] {R.id.genreName}
-        );
+        // Set up RecyclerView
+        GenreAdapter adapter = new GenreAdapter(genres, genreRecommendations, this::showRecommendations);
+        genreRecyclerView.setAdapter(adapter);
+        genreRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
-        genreListView.setAdapter(adapter);
-
-        genreListView.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedGenre = (String) ((HashMap) genreList.get(position)).get("genre");
-            List<String> recommendations = genreRecommendations.get(selectedGenre);
-
+    /**
+     * Displays a Toast message with recommendations for the selected genre.
+     *
+     * @param genre The selected genre.
+     */
+    private void showRecommendations(String genre) {
+        List<String> recommendations = genreRecommendations.get(genre);
+        if (recommendations != null) {
             String recommendationString = String.join(", ", recommendations);
-
-            Toast.makeText(ExploreActivity.this,
-                    "Recommendations for " + selectedGenre + ": " + recommendationString,
+            Toast.makeText(this,
+                    "Recommendations for " + genre + ": " + recommendationString,
                     Toast.LENGTH_LONG).show();
-        });
+        } else {
+            Toast.makeText(this, "No recommendations available.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
