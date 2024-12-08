@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,9 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.gamevault.database.GameVaultRepository;
 import com.example.gamevault.database.entities.GameVault;
 import com.example.gamevault.database.entities.User;
-import com.example.gamevault.viewHolders.ExploreActivity;
 import com.example.gamevault.viewHolders.GameVaultViewModel;
-import com.example.gamevault.R;
 import com.example.gamevault.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;

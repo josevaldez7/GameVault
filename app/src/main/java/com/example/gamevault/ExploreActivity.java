@@ -1,4 +1,4 @@
-package com.example.gamevault.viewHolders;
+package com.example.gamevault;
 
 import android.os.Bundle;
 import android.widget.ListView;
@@ -6,8 +6,6 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.gamevault.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

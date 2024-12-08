@@ -25,7 +25,7 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".BrowseActivity" />
         <activity android:name=".ChangeInfoActivity" />
-
+        <activity android:name=".ExploreActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
