@@ -24,6 +24,8 @@ import java.util.concurrent.Executors;
 public abstract class GameVaultDataBase extends RoomDatabase {
 
     public static final String USER_TABLE = "usertable";
+    public static final String FAVORITES_TABLE = "favoritestable";
+    public static final String MOVIE_TABLE = "movietable";
     private static final String DATABASE_NAME = "gamevaultDatabase";
     public static final String GYM_LOG_TABLE = "gamevaultTable";
 
