@@ -11,6 +11,10 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import java.util.List; // Import for List
+
+import com.example.gamevault.models.Game; // Import for your Game model class
+
 
 public interface APIInterface {
 
@@ -36,5 +40,12 @@ public interface APIInterface {
     );
 
 
+    // Fetch games by title
+    @GET("/")
+    Call<List<Game>> searchGames(@Query("t") String title);
+
+    // Fetch trending games (replace with actual API endpoint)
+    @GET("trending-games")
+    Call<List<Game>> getTrendingGames();
 
 }
