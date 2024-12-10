@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +10,7 @@
         android:id="@+id/exploreTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Explore Movies by IMDb"
+        android:text="Explore Shows"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#212121"
@@ -37,7 +36,7 @@
             android:id="@+id/btnHighMetascore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Critically Acclaimed Movies (IMDb &gt; 8)"
+            android:text="Critically Acclaimed Shows (Rating > 8)"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:backgroundTint="#2196F3"
@@ -48,7 +47,7 @@
             android:id="@+id/btnLowMetascore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Underrated Movies (IMDb &lt; 5)"
+            android:text="Underrated Shows (Rating &lt; 5)"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:backgroundTint="#FF5722"
@@ -60,7 +59,7 @@
         android:id="@+id/exploreDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Discover movies based on their MetaScores. Explore top-rated masterpieces and hidden gems."
+        android:text="Discover shows based on their ratings."
         android:textColor="#757575"
         android:padding="16dp"
         android:gravity="center"
@@ -68,8 +67,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ListView
-        android:id="@+id/genreListView"
+    <!-- RecyclerView for shows -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/showsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"

@@ -5,10 +5,17 @@ import java.util.ArrayList;
 public class Show {
     private String name;
     private Rating rating;
-
+     private String Poster;
     // Getters and setters
     public String getName() {
         return name;
+    }
+public String getPoster()
+{
+    return Poster;
+}
+    public void setPoster(String poster) {
+        this.Poster = poster;
     }
 
     public void setName(String name) {
@@ -33,6 +40,8 @@ public class Show {
 
         public void setAverage(float average) {
             this.average = average;
+
+
         }
     }
 }
