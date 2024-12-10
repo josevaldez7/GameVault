@@ -38,5 +38,5 @@
     <string name="enter_new_password">Enter New Password</string>
     <string name="confirm_changes">Confirm Changes</string>
     <string name="cancel">Cancel</string>
-    <string name="type_a_game_to_search_for">Type a game to search for</string>
+    <string name="type_a_game_to_search_for">Type a movie to search for</string>
 </resources>

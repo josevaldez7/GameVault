@@ -23,8 +23,9 @@
             <Button
                 android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:textSize="25sp"
+                android:padding="20dp"
                 android:backgroundTint="#444444"
                 android:text="Go Home"
                 android:textColor="#c30f16" />
@@ -34,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
+                android:textSize="25sp"
                 android:hint="@string/type_a_game_to_search_for"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp" />
@@ -41,10 +43,10 @@
             <Button
                 android:id="@+id/searchButton"
                 android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="#444444"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:text="Search"
                 android:textColor="#c30f16"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Title: "
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="222dp"
@@ -68,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:text="Description: "
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/moviePosterImageView" />
