@@ -334,14 +334,14 @@ public class MainActivity extends AppCompatActivity {
     private void updateDisplay() {
         ArrayList<GameVault> allLogs = repository.getAllLogsByUserId(loggedInUserId);
         if (allLogs.isEmpty()) {
-   //         binding.logDisplayTextView.setText(R.string.nothing_to_show_time_to_hit_the_gym);
+            //         binding.logDisplayTextView.setText(R.string.nothing_to_show_time_to_hit_the_gym);
             return;
         }
         StringBuilder sb = new StringBuilder();
         for (GameVault log : allLogs) {
             sb.append(log);
         }
-    //    binding.logDisplayTextView.setText(sb.toString());
+        //    binding.logDisplayTextView.setText(sb.toString());
     }
 
 

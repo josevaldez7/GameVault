@@ -9,6 +9,7 @@ public class Movie {
     private String Plot;
     private String imdbID;
     private String Poster;
+    private String Metascore;
 
     // Getters and Setters
     public String getTitle() {
@@ -18,6 +19,15 @@ public class Movie {
     public void setTitle(String title) {
         this.Title = title;
     }
+
+    public String getMetascore() {
+        return Metascore;
+    }
+
+    public void setMetascore(String metascore) {
+        Metascore = metascore;
+    }
+
 
     public String getYear() {
         return Year;

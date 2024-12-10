@@ -1,90 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".SearchActivity">
 
-    <ScrollView
+    <!-- Title TextView -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Movie Vault"
+        android:textColor="#d6001c"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Home Button -->
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#444444"
+        android:padding="12dp"
+        android:text="Go Home"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+
+    <!-- Search EditText -->
+    <EditText
+        android:id="@+id/searchEditText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/type_a_movie_to_search_for"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeButton" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <!-- Search Button -->
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#444444"
+        android:padding="12dp"
+        android:text="Search"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEditText" />
 
-            <!-- TextView to display movie description -->
+    <!-- Movie Title TextView -->
+    <TextView
+        android:id="@+id/movieTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Title: "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchButton" />
 
-            <!-- ImageView to display movie poster -->
+    <!-- Movie Poster ImageView -->
+    <ImageView
+        android:id="@+id/moviePosterImageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Movie Poster"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movieTitleTextView" />
 
-            <Button
-                android:id="@+id/homeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:backgroundTint="#444444"
-                android:text="Go Home"
-                android:textColor="#c30f16" />
-
-            <EditText
-                android:id="@+id/searchEditText"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:hint="@string/type_a_game_to_search_for"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp" />
-
-            <Button
-                android:id="@+id/searchButton"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="24dp"
-                android:backgroundTint="#444444"
-                android:text="Search"
-                android:textColor="#c30f16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
-
-            <TextView
-                android:id="@+id/movieTitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Title: "
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="222dp"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/movieDescriptionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="Description: "
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/moviePosterImageView" />
-
-            <ImageView
-                android:id="@+id/moviePosterImageView"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="28dp"
-                android:contentDescription="Movie Poster"
-                android:scaleType="centerCrop"
-                app:layout_constraintTop_toBottomOf="@+id/movieTitleTextView"
-                tools:layout_editor_absoluteX="0dp" />
-
-        </LinearLayout>
-    </ScrollView>
-
-
-
+    <!-- Movie Description TextView -->
+    <TextView
+        android:id="@+id/movieDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Description: "
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moviePosterImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

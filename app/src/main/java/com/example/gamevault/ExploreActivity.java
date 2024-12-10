@@ -1,62 +1,78 @@
 package com.example.gamevault;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ExploreActivity extends AppCompatActivity {
 
-    private ListView genreListView;
-    private HashMap<String, List<String>> genreRecommendations;
+    private ListView showsListView;
+    private List<String> showNames;
+    private Button btnHighMetascore, btnLowMetascore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
-        genreListView = findViewById(R.id.genreListView);
+        showsListView = findViewById(R.id.genreListView);
+        btnHighMetascore = findViewById(R.id.btnHighMetascore);
+        btnLowMetascore = findViewById(R.id.btnLowMetascore);
+        showNames = new ArrayList<>();
 
-        // Sample genres and game recommendations
-        genreRecommendations = new HashMap<>();
-        genreRecommendations.put("Action", List.of("Game 1", "Game 2", "Game 3"));
-        genreRecommendations.put("Adventure", List.of("Game 4", "Game 5", "Game 6"));
-        genreRecommendations.put("RPG", List.of("Game 7", "Game 8", "Game 9"));
-        genreRecommendations.put("Sports", List.of("Game 10", "Game 11", "Game 12"));
+        Retrofit retrofit = APIClient.getRetrofitInstanceForTVMaze();
+        APIInterface apiService = retrofit.create(APIInterface.class);
 
-        List<HashMap<String, String>> genreList = new ArrayList<>();
-        for (String genre : genreRecommendations.keySet()) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("genre", genre);
-            genreList.add(map);
-        }
+        btnHighMetascore.setOnClickListener(v -> fetchShows(apiService, "popular", 8.0));  // Shows with rating above 9
+        btnLowMetascore.setOnClickListener(v -> fetchShows(apiService, "popular", 5.0));   // Shows with rating below 5
+    }
 
-        // Use SimpleAdapter
-        SimpleAdapter adapter = new SimpleAdapter(
-                this,
-                genreList,
-                R.layout.genre_list_item,
-                new String[] {"genre"},
-                new int[] {R.id.genreName}
-        );
+    private void fetchShows(APIInterface apiService, String category, double threshold) {
+        Call<List<Show>> call = apiService.getShows();
+        call.enqueue(new Callback<List<Show>>() {
+            @Override
+            public void onResponse(Call<List<Show>> call, Response<List<Show>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    showNames.clear();  // Clear the previous list
+                    List<Show> shows = response.body();
 
-        genreListView.setAdapter(adapter);
+                    for (Show show : shows) {
+                        // Get the average rating and filter shows based on it
+                        if (show.getRating() != null && show.getRating().getAverage() >= threshold) {
+                            showNames.add(show.getName());
+                        }
+                    }
 
-        genreListView.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedGenre = (String) ((HashMap) genreList.get(position)).get("genre");
-            List<String> recommendations = genreRecommendations.get(selectedGenre);
+                    // Update the ListView with the filtered show names
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                            ExploreActivity.this,
+                            android.R.layout.simple_list_item_1,
+                            showNames
+                    );
+                    showsListView.setAdapter(adapter);
+                } else {
+                    Log.e("API Error", "Failed to fetch shows. Response code: " + response.code());
+                    Toast.makeText(ExploreActivity.this, "Failed to fetch shows", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-            String recommendationString = String.join(", ", recommendations);
-
-            Toast.makeText(ExploreActivity.this,
-                    "Recommendations for " + selectedGenre + ": " + recommendationString,
-                    Toast.LENGTH_LONG).show();
+            @Override
+            public void onFailure(Call<List<Show>> call, Throwable t) {
+                Toast.makeText(ExploreActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

@@ -11,8 +11,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
 
     private List<Movie> movieList;
@@ -33,6 +31,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.title.setText(movie.getTitle());
         holder.year.setText(movie.getYear());
         holder.plot.setText(movie.getPlot());
+
+        // Add Metascore display
+        if (movie.getMetascore() != null && !movie.getMetascore().isEmpty()) {
+            holder.metascore.setText("Metascore: " + movie.getMetascore());
+            holder.metascore.setVisibility(View.VISIBLE);
+        } else {
+            holder.metascore.setVisibility(View.GONE);
+        }
+
         Glide.with(holder.itemView.getContext()).load(movie.getPoster()).into(holder.poster);
     }
 
@@ -41,9 +48,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return movieList.size();
     }
 
+    public void updateMovies(List<Movie> newMovies) {
+        this.movieList = newMovies;  // Update the movie list
+        notifyDataSetChanged();
+    }
+
     public class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, year, plot;
+        TextView title, year, plot, metascore;
         ImageView poster;
 
         public MovieViewHolder(View itemView) {
@@ -52,6 +64,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             year = itemView.findViewById(R.id.movieYear);
             plot = itemView.findViewById(R.id.moviePlot);
             poster = itemView.findViewById(R.id.moviePoster);
+
+            // Add metascore TextView
+            metascore = itemView.findViewById(R.id.movieMetascore);
         }
     }
 }

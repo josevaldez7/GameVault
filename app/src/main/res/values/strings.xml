@@ -36,7 +36,9 @@
     <string name="enter_new_password">Enter New Password</string>
     <string name="confirm_changes">Confirm Changes</string>
     <string name="cancel">Cancel</string>
-    <string name="type_a_game_to_search_for">Type a game to search for</string>
-    <string name="explore">Explore</string>
+
     <string name="genre_name">Genre Name</string>
+    <string name="explore">Explore</string>
+    <string name="type_a_movie_to_search_for">Type a movie to search for</string>
+    <string name="welcome_to_movievault">Welcome to MovieVault</string>
 </resources>
