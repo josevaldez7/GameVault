@@ -24,7 +24,7 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:textColor="#d6001c"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:text="Browsing Movies"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
