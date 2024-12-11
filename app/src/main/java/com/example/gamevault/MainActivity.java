@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,7 +22,6 @@ import com.example.gamevault.database.GameVaultRepository;
 import com.example.gamevault.database.entities.GameVault;
 import com.example.gamevault.database.entities.User;
 import com.example.gamevault.viewHolders.GameVaultViewModel;
-import com.example.gamevault.R;
 import com.example.gamevault.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
@@ -95,7 +93,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = SearchActivity.searchIntentFactory(MainActivity.this);
             startActivity(intent);
         });
-
+        binding.exploreButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Explore button worked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, ExploreActivity.class);
+            startActivity(intent);
+        });
         binding.browseButton.setOnClickListener(v -> {
             Toast.makeText(this, "browse button worked", Toast.LENGTH_SHORT).show();
             Intent intent = BrowseActivity.browseIntentFactory(MainActivity.this);
@@ -332,14 +334,14 @@ public class MainActivity extends AppCompatActivity {
     private void updateDisplay() {
         ArrayList<GameVault> allLogs = repository.getAllLogsByUserId(loggedInUserId);
         if (allLogs.isEmpty()) {
-   //         binding.logDisplayTextView.setText(R.string.nothing_to_show_time_to_hit_the_gym);
+            //         binding.logDisplayTextView.setText(R.string.nothing_to_show_time_to_hit_the_gym);
             return;
         }
         StringBuilder sb = new StringBuilder();
         for (GameVault log : allLogs) {
             sb.append(log);
         }
-    //    binding.logDisplayTextView.setText(sb.toString());
+        //    binding.logDisplayTextView.setText(sb.toString());
     }
 
 

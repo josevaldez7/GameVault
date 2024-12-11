@@ -1,44 +1,45 @@
 package com.example.gamevault;
 
-import java.util.ArrayList;
-
 public class Show {
-
-    private String Name;
-    private ArrayList<String> Genres;
-    private String Rating;
-    private String image;
-
+    private String name;
+    private Rating rating;
+     private String Poster;
+    // Getters and setters
     public String getName() {
-        return Name;
+        return name;
+    }
+public String getPoster()
+{
+    return Poster;
+}
+    public void setPoster(String poster) {
+        this.Poster = poster;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public ArrayList<String> getGenres() {
-        return Genres;
+    public Rating getRating() {
+        return rating;
     }
 
-    public void setGenres(ArrayList<String> genres) {
-        Genres = genres;
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 
-    public String getImage() {
-        return image;
-    }
+    public static class Rating {
+        private float average;
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+        // Getter and setter
+        public float getAverage() {
+            return average;
+        }
 
-    public String getRating() {
-        return Rating;
-    }
+        public void setAverage(float average) {
+            this.average = average;
 
-    public void setRating(String rating) {
-        Rating = rating;
+
+        }
     }
 }
-
