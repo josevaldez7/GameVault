@@ -35,6 +35,13 @@ public interface APIInterface {
             @Query("apikey") String apiKey       // API key (provided by you)
     );
 
+    @GET("/")
+    Call<Show> browseShows(
+            @Query("apikey") String apiKey       // API key (provided by you)
+    );
+
+
+
 
 
 }

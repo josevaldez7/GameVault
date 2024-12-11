@@ -2,7 +2,9 @@ package com.example.gamevault;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,15 +47,26 @@ import java.io.InputStreamReader;
 
 public class BrowseActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private MovieAdapter movieAdapter;
-    private List<Movie> movieList;
 
+    private TextView browse;
+    private RecyclerView showsRecyclerView;
+    private ImageView showImage;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button homeButton = findViewById(R.id.homeButton);
+
+        // Initialize views
+        Button homeButton = findViewById(R.id.homeButton);
+        showsRecyclerView = findViewById(R.id.recyclerView);
+        browse = findViewById(R.id.browse);
+
+
+        // Set up Retrofit
+        Retrofit retrofit = APIClient.getRetrofitInstance1();
+        APIInterface apiService = retrofit.create(APIInterface.class);
 
         homeButton.setOnClickListener(v -> {
             Intent intent = new Intent(BrowseActivity.this, MainActivity.class);
@@ -65,38 +78,6 @@ public class BrowseActivity extends AppCompatActivity {
             finish();
         });
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        fetchMovies("Inception"); // Example search term
-    }
-
-    private void fetchMovies(String searchQuery) {
-        String apiKey = "f7329d4a";  // Replace with your OMDB API key
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.omdbapi.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        APIInterface apiService = retrofit.create(APIInterface.class);
-
-        Call<MovieSearchResponse> call = apiService.searchMovies(searchQuery, apiKey);
-        call.enqueue(new Callback<MovieSearchResponse>() {
-            @Override
-            public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    movieList = response.body().getSearch();
-                    movieAdapter = new MovieAdapter(movieList);
-                    recyclerView.setAdapter(movieAdapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
-                Toast.makeText(BrowseActivity.this, "Failed to load movies", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 

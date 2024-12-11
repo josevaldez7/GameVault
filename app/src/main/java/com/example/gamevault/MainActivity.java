@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     static final String SHARED_PREFERENCE_USERID_KEY = "gamevault.SHARED_PREFERENCE_USERID_KEY";
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "gamevault.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final String API_KEY = "ad341f2d8169dfd8ff8a2e335b11bd12b199e92c";
-    private static final String API = "https://www.giantbomb.com/api/games/?api_key=ad341f2d8169dfd8ff8a2e335b11bd12b199e92c";
+    private static final String API = "https://api.tvmaze.com/shows";
 
 
 
