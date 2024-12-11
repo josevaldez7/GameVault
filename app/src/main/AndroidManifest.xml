@@ -21,12 +21,15 @@
         <activity
             android:name=".LoginFormActivity"
             android:exported="false" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
 
         <activity android:name=".SearchActivity" />
         <activity android:name=".BrowseActivity" />
         <activity android:name=".ChangeInfoActivity" />
         <activity android:name=".ExploreActivity" />
-        <activity android:name=".CreateAccountActivity" />
+
 
         <activity
             android:name=".MainActivity"
