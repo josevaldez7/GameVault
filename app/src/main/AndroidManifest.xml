@@ -21,6 +21,9 @@
         <activity
             android:name=".LoginFormActivity"
             android:exported="false" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
 
         <activity android:name=".SearchActivity" />
         <activity android:name=".BrowseActivity" />
